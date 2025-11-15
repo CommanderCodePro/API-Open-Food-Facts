@@ -1,87 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Catalog App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-        }
-        .options {
-            margin: 20px 0;
-        }
-        .option {
-            margin: 10px 0;
-            padding: 15px;
-            background: #ecf0f1;
-            border-radius: 5px;
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #2980b9;
-        }
-        code {
-            background: #2c3e50;
-            color: white;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 0.9em;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #2c3e50;
+}
+
+/* Header */
+header {
+    background: #3498db;
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Main content full width */
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* Two-column cards layout used for About/Target + definitions positioning */
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    row-gap: 0px;
+    align-items: stretch;
+}
+
+.about, .target {
+    display: flex;
+    flex-direction: column;
+}
+
+.definitions {
+    grid-column: 1 / -1; /* span full width */
+}
+
+/* Section styling */
+.section {
+    margin-bottom: 40px;
+    padding: 25px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    main {
+        padding: 30px 15px;
+    }
+    
+    .section {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 20px 10px;
+    }
+    
+    .section {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    a.button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+.section h2 {
+    margin-top: 0;
+}
+
+/* Buttons */
+a.button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #3498db;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+a.button:hover {
+    background: #2980b9;
+}
+
+code {
+    background: #eee;
+    padding: 4px 6px;
+    border-radius: 5px;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>🛒 Product Catalog App</h1>
-        <p>Welcome to the Product Catalog! This app fetches product information from OpenFoodFacts using barcodes.</p>
-        
-        <div class="options">
-            <div class="option">
-                <strong>📦 View Default Products:</strong><br>
-                <a href="/product">View Product Catalog</a><br>
-                <small>Shows the default list of products defined in the app.</small>
-            </div>
-            
-            <div class="option">
-                <strong>🔍 Custom Barcode Search:</strong><br>
-                You can also specify custom barcodes using URL parameters:<br>
-                <code>/product?barcodes=3168930000020,3017620422003</code><br>
-                <a href="/product?barcodes=3168930000020,3017620422003,3270190127512">Example: 3 Custom Products</a>
-            </div>
-            
-            <div class="option">
-                <strong>📱 Single Product View:</strong><br>
-                View a single product by adding its barcode to the URL:<br>
-                <code>/product/3168930000020</code><br>
-                <a href="/product/3168930000020">Example: Single Product</a>
-            </div>
-        </div>
-        
-        <p><strong>How it works:</strong></p>
-        <ul>
-            <li>The app maintains a list of barcodes</li>
-            <li>For each barcode, it makes an API call to OpenFoodFacts</li>
-            <li>Product information and nutritional data are displayed in a grid layout</li>
-            <li>You can add multiple barcodes to display multiple products</li>
-        </ul>
+
+<header>
+    <h1> 🥗 Nutri Compare 📊</h1>
+    <p>See the facts, Eat Smarter</p>
+</header>
+
+<main>
+    <div class="section">
+        <h2>Welcome to Nutri Compare.</h2>
+        <p>To start living a healthier life and achieving your goals please click below to compare the nutritional value of 2 products.</p>
+
+        <a href="/product" class="button">Compare products</a>
     </div>
+
+    <div class="cards-grid">
+        <div class="section about">
+            <h2>About This App</h2>
+            <p>Nutri Compare helps users make informed choices by placing two product nutrition labels side-by-side for quick comparison.</p>
+            <ul>
+                <li>Compare nutritional values side by side</li>
+                <li>Check carbohydrates, proteins, fats, sugars, and salt levels</li>
+                <li>View ingredients and highlight differences</li>
+                <li>Make informed and healthier buying decisions</li>
+            </ul>
+        </div>
+
+        <div class="section target">
+            <h2>Target Audience</h2>
+            <ul>
+                <li>Health-conscious individuals aged 18-50</li>
+                <li>People with specific diet requirements</li>
+                <li>Families wanting quick product comparisons</li>
+                <li>Anyone looking to simplify their grocery choices</li>
+            </ul>
+        </div>
+
+        <div class="section definitions">
+            <h2>Definitions</h2>
+            <p><strong>Nutri-Score</strong>: This Nutri-Score rates the overall nutritional quality of food products from A (healthiest) to E (least healthy) considering  various nutrients such as calories, fat, sugars and salt.</p>
+            <p><strong>Environmental (Eco) Score</strong>: The Eco-Score evaluates the environmental impact of food products from A (best environmental impact) to E (worst environmental impact) considering factors like productino method, packaging, transportation distance and land use.</p>
+            <p><strong>NOVA Group</strong>: The NOVA classification catergorises food products into 4 groups - Group 1 (unprocessed/minimally processed foods), Group 2 (processed culinary ingredients), Group 3 (processed foods), and Group 4 (ultra processed food and drink products) meaning the lower the NOVA rating the better.</p>
+        </div>
+    </div>
+
+</main>
+
 </body>
 </html>
